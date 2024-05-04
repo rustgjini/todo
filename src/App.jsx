@@ -5,6 +5,7 @@ import todoIcon from "./assets/planning.png";
 import inProgressIcon from "./assets/time-management.png";
 import doneIcon from "./assets/accept.png";
 import FormModal from "./components/Modal";
+import TaskFilter from "./components/TaskFIlter";
 
 const App = () => {
   const [tasks, setTasks] = useState(() => {
@@ -14,6 +15,8 @@ const App = () => {
 
   const [activeCard, setActiveCard] = useState(null);
   const [taskToEdit, setTaskToEdit] = useState(null);
+  const [filterStatus, setFilterStatus] = useState(null);
+
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -29,17 +32,24 @@ const App = () => {
     console.log({ activeCard, status, index });
     if (activeCard === null || activeCard === undefined) return;
     const taskToMove = tasks[activeCard];
-    const updatedTasks = tasks.filter((task, index) => index !== activeCard);
+    const activeTaskIndex = tasks.findIndex(task => task === filteredTasks[activeCard]);
+    const updatedTasks = tasks.filter((task, index) => index !== activeTaskIndex);
     updatedTasks.splice(index, 0, {
       ...taskToMove,
       status: status,
     });
-    setTasks(updatedTasks)
+    setTasks(updatedTasks);
   };
+  
 
   const handleEdit = (taskIndex) => {
-    setTaskToEdit(tasks[taskIndex]);
+    const originalIndex = tasks.findIndex(task => task === filteredTasks[taskIndex]);
+    setTaskToEdit(tasks[originalIndex]);
   };
+  
+
+  const filteredTasks = filterStatus ? tasks.filter(task => task.status === filterStatus) : tasks;
+
 
   return (
     <div className="app">
@@ -47,6 +57,10 @@ const App = () => {
         setTasks={setTasks}
         taskToEdit={taskToEdit}
         setTaskToEdit={setTaskToEdit}
+      />
+      <TaskFilter
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
       />
       <main className="app_main">
         {[
@@ -58,7 +72,7 @@ const App = () => {
             key={column.status}
             title={column.title}
             icon={column.icon}
-            tasks={tasks}
+            tasks={filteredTasks}
             status={column.status}
             handleDelete={handleDelete}
             handleEdit={handleEdit}

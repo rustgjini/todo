@@ -13,3 +13,10 @@ export const taskOptions = {
   description: "",
   deadline: null,
 };
+
+export const filterOptions = [
+  { value: "", label: "All" },
+  { value: "todo", label: "To do" },
+  { value: "in progress", label: "In progress" },
+  { value: "done", label: "Done" }
+];
