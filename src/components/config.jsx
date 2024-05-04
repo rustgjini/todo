@@ -20,3 +20,12 @@ export const filterOptions = [
   { value: "in progress", label: "In progress" },
   { value: "done", label: "Done" }
 ];
+
+export const tagStyle = {
+  HTML: { backgroundColor: "#FF5733" }, 
+  CSS: { backgroundColor: "#17A2B8" },
+  JavaScript: { backgroundColor: "#FFC300" }, 
+  React: { backgroundColor: "#61DAFB" }, 
+  default: { backgroundColor: "#f9f9f9" }, 
+  
+};

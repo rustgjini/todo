@@ -17,7 +17,6 @@ const App = () => {
   const [taskToEdit, setTaskToEdit] = useState(null);
   const [filterStatus, setFilterStatus] = useState(null);
 
-
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -29,7 +28,6 @@ const App = () => {
   };
 
   const onDrop = (status, index) => {
-    console.log({ activeCard, status, index });
     if (activeCard === null || activeCard === undefined) return;
     const taskToMove = tasks[activeCard];
     const activeTaskIndex = tasks.findIndex(task => task === filteredTasks[activeCard]);
@@ -41,15 +39,12 @@ const App = () => {
     setTasks(updatedTasks);
   };
   
-
   const handleEdit = (taskIndex) => {
     const originalIndex = tasks.findIndex(task => task === filteredTasks[taskIndex]);
     setTaskToEdit(tasks[originalIndex]);
   };
   
-
   const filteredTasks = filterStatus ? tasks.filter(task => task.status === filterStatus) : tasks;
-
 
   return (
     <div className="app">

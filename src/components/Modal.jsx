@@ -59,10 +59,6 @@ const FormModal = ({ setTasks, taskToEdit, setTaskToEdit }) => {
     handleClose();
   };
   
-  
-
-  console.log({taskData})
-
   const handleClose = () => {
     setShowModal(false);
     setTaskToEdit(null); 
