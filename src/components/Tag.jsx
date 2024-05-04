@@ -3,11 +3,12 @@ import "./../styles/Tag.css";
 
 const Tag = ({ tagName, selectTag, selected }) => {
   const tagStyle = {
-    HTML: { backgroundColor: "#fda821" },
-    CSS: { backgroundColor: "#15d4c8" },
-    JavaScript: { backgroundColor: "#ffd12c" },
-    React: { backgroundColor: "#4cdafc" },
-    default: { backgroundColor: "#f9f9f9" },
+    HTML: { backgroundColor: "#FF5733" }, 
+    CSS: { backgroundColor: "#17A2B8" },
+    JavaScript: { backgroundColor: "#FFC300" }, 
+    React: { backgroundColor: "#61DAFB" }, 
+    default: { backgroundColor: "#f9f9f9" }, 
+    
   };
 
   if (selectTag) {
